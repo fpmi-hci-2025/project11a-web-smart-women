@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>OnLearn Frontend</title>
+    <style>
+        body { font-family: Arial; padding: 20px; }
+        .container { max-width: 800px; margin: 0 auto; }
+        .status { padding: 10px; margin: 10px 0; }
+        .up { background: green; color: white; }
+        .down { background: red; color: white; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>OnLearn Frontend</h1>
+        <div id="status" class="status down">Checking backend...</div>
+        <button onclick="checkBackend()">Check Backend</button>
+    </div>
+    <script>
+        async function checkBackend() {
+            try {
+                const response = await fetch('http://localhost:5000/api/health');
+                const data = await response.json();
+                document.getElementById('status').className = 'status up';
+                document.getElementById('status').innerHTML = 
+                    `Backend: ${data.status} - ${data.service}`;
+            } catch {
+                document.getElementById('status').className = 'status down';
+                document.getElementById('status').innerHTML = 'Backend offline';
+            }
+        }
+        checkBackend();
+    </script>
+</body>
+</html>
