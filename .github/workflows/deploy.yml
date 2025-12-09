@@ -46,3 +46,9 @@ jobs:
         # Просто проверяем, что образ создан
         docker images | grep onlearn-frontend
         echo "✅ Docker image test passed"
+
+    - name: Deploy Notification
+      if: github.ref == 'refs/heads/main'
+      run: |
+        echo "Frontend will be automatically deployed to Render.com"
+        echo "Check Render.com dashboard for deployment status"
