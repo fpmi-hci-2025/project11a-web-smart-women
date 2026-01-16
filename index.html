@@ -1,75 +1,27 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OnLearn - Образовательная платформа</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 20px;
-            background: #f5f5f5;
-        }
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            background: white;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-        h1 {
-            color: #1a73e8;
-        }
-        .status {
-            padding: 10px;
-            background: #e8f5e9;
-            border-radius: 5px;
-            margin: 20px 0;
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <h1>🎓 OnLearn - Образовательная платформа</h1>
-        <p>Добро пожаловать в демо-версию платформы!</p>
-        
-        <div class="status">
-            <strong>Статус бэкенда:</strong> <span id="backend-status">Проверка...</span>
-        </div>
-        
-        <h2>Доступные курсы:</h2>
-        <ul id="courses-list"></ul>
-    </div>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Onlearn - Современная образовательная платформа</title>
+    <meta name="description" content="Учитесь онлайн с лучшими курсами по IT, дизайну, маркетингу и многому другому" />
+    <meta name="author" content="Onlearn" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-    <script>
-        // Проверка бэкенда
-        fetch('http://localhost:5000/api/health')
-            .then(response => response.json())
-            .then(data => {
-                document.getElementById('backend-status').innerHTML = 
-                    `✅ ${data.status} (${data.service})`;
-            })
-            .catch(error => {
-                document.getElementById('backend-status').innerHTML = 
-                    '❌ Бэкенд недоступен';
-            });
+    <meta property="og:title" content="Onlearn - Современная образовательная платформа" />
+    <meta property="og:description" content="Учитесь онлайн с лучшими курсами" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
 
-        // Загрузка курсов
-        fetch('http://localhost:5000/api/courses')
-            .then(response => response.json())
-            .then(data => {
-                const list = document.getElementById('courses-list');
-                data.courses.forEach(course => {
-                    const li = document.createElement('li');
-                    li.textContent = `${course.id}. ${course.title}`;
-                    list.appendChild(li);
-                });
-            })
-            .catch(error => {
-                console.error('Ошибка загрузки курсов:', error);
-            });
-    </script>
-</body>
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@Lovable" />
+    <meta name="twitter:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
+  </head>
+
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
 </html>
